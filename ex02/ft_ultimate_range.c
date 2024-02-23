@@ -6,7 +6,7 @@
 /*   By: argrouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:14:28 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/22 23:34:51 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/23 03:47:06 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int ft_ultimate_range(int **range, int min, int max);
 
 int ft_ultimate_range(int **range, int min, int max)
 {
-//	int	*array;
 	int	index;
 
 	if (max - min <= 0)
@@ -37,11 +36,11 @@ int ft_ultimate_range(int **range, int min, int max)
 	return (sizeof(range));
 }
 
-int main(){
-    int **tab = malloc(sizeof(int**));
-    int ret = ft_ultimate_range(tab, 10, 200);
-    for (int i = 0; i < 10; i++)
-        printf("t[%d] = %d\n", i, (*tab)[i]);
-    printf("return = %d\n", ret);
-
-}
+// int main(){
+//     int **tab = malloc(sizeof(int**));
+//     int max = 45;
+//     int ret = ft_ultimate_range(tab, 10, max);
+//     for (int i = 0; i < max; i++)
+//         printf("t[%d] = %d\n", i, (*tab)[i]);
+//     printf("return = %d\n", ret);
+// }
