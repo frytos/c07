@@ -6,7 +6,7 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:42:09 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/23 03:43:28 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/23 03:51:13 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-int main(){
-//    char    *tab[] = {"salut","comment","ca","va","?"};
-    char    *tab[] = {"salut","","ca","va","?"};
-    char *r = ft_strjoin(5, tab, "-");
-//    char *r = ft_strjoin(5, tab, "");
-//    char *r = ft_strjoin(0, tab, " ");
-    printf("%s\n",r);
-    printf("%p\n",r);
-}
+// int main(){
+// //    char    *tab[] = {"salut","comment","ca","va","?"};
+//     char    *tab[] = {"salut","","ca","va","?"};
+//     char *r = ft_strjoin(5, tab, "-");
+// //    char *r = ft_strjoin(5, tab, "");
+// //    char *r = ft_strjoin(0, tab, " ");
+//     printf("%s\n",r);
+//     printf("%p\n",r);
+// }
