@@ -97,7 +97,7 @@ int	ft_strlen(char *str)
 
 // int main(){
 // //    char    *tab[] = {"salut","comment","ca","va","?"};
-//     char    *tab[] = {"salut","","ca","va","?"};
+//     char    *tab[] = {"salut ",""," ca \n","va","?"};
 //     char *r = ft_strjoin(5, tab, "-");
 // //    char *r = ft_strjoin(5, tab, "");
 // //    char *r = ft_strjoin(0, tab, " ");
