@@ -22,7 +22,7 @@ int	*ft_range(int min, int max)
 
 	if (min >= max)
 		return (NULL);
-	array = malloc((max - min) * sizeof(int));
+	array = (int*) malloc((max - min) * sizeof(int)); // Int ? Array ?
 	if (array == NULL)
 		return (NULL);
 	index = 0;
@@ -34,10 +34,9 @@ int	*ft_range(int min, int max)
 	return (array);
 }	
 
-
-int main()
-{
-    int    *t = ft_range(10, 20);
-    for (int i = 0; i < 10; i++)
-        printf("t[%d] = %d\n", i, t[i]);
-}
+// int main()
+// {
+//     int    *t = ft_range(10, 20);
+//     for (int i = 0; i < 10; i++)
+//         printf("t[%d] = %d\n", i, t[i]);
+// }

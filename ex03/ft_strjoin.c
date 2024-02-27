@@ -25,7 +25,7 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	char	*str_cat;
 
 	if (size == 0)
-		return (malloc(sizeof(char)));
+		return (malloc(sizeof(char)));// needs to be freeable
 	str_cat = malloc(get_malloc_len(size, strs, sep) * sizeof(char));
 	if (str_cat == NULL)
 		return (NULL);
