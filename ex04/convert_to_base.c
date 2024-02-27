@@ -12,33 +12,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 int		strpos(char *str, char c);
 int		ft_atoi_base(char *nbr, char *base_from);
 int		get_malloc_size(int n, int len_base);
 char	*ft_putnbr_base(int n, char *base_to);
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
-
-/*
-int	main(int argc, char * argv[])
-{
-	(void)argc;
-	printf("CONVERSION\n\nin base : %s\n%s\n\nto base : %s\n%s\n", argv[2],
-		 argv[1], argv[3], ft_convert_base(argv[1], argv[2], argv[3]));
-}
-*/
-
-/*
-int    main(void)
-{
-    char *input = "       --+-+---+-42";
-	char *base_from = "0123456789";
-	char *base_to = "01";
-	
-	printf("CONVERSION\n\nin base : %s\n%s\n\nto base : %s\n%s\n", base_from,
-		 input, base_to, ft_convert_base(input, base_from, base_to));
-}
-*/
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
@@ -55,6 +35,8 @@ char	*ft_putnbr_base(int n, char *base_to)
 	len_base_to = strpos(base_to, 0);
 	i = get_malloc_size(n, len_base_to);
 	nbr_converted = (char *) malloc(i * sizeof(char));
+	if (nbr_converted == NULL)
+		return ("Error malloc()");
 	if (n < 0)
 	{
 		nbr_converted[0] = '-';
@@ -128,3 +110,54 @@ int	strpos(char *str, char c)
 		pos++;
 	return (pos);
 }
+
+// int main(void) {
+//     char *input1 = "       -+-+---+--2147483647";
+//     char *base_from1 = "0123456789";
+//     char *base_to1 = "0123456789";
+
+//     char *input2 = "101010";
+//     char *base_from2 = "01";
+//     char *base_to2 = "0123456789";
+
+//     char *input3 = "F7A25";
+//     char *base_from3 = "0123456789ABCDEF";
+//     char *base_to3 = "0123456789";
+
+//     printf("CONVERSION\n\n");
+
+//     printf("Test 1:\n");
+//     printf("Input: %s\nBase From: %s\nBase To: %s\nResult: %s\n\n", 
+//             input1, base_from1, base_to1, 
+// 			ft_convert_base(input1, base_from1, base_to1));
+
+//     printf("Test 2:\n");
+//     printf("Input: %s\nBase From: %s\nBase To: %s\nResult: %s\n\n", 
+//             input2, base_from2, base_to2, 
+// 			ft_convert_base(input2, base_from2, base_to2));
+
+//     printf("Test 3:\n");
+//     printf("Input: %s\nBase From: %s\nBase To: %s\nResult: %s\n\n", 
+//             input3, base_from3, base_to3, 
+// 			ft_convert_base(input3, base_from3, base_to3));
+
+//     return 0;
+// }
+
+// int main(int argc, char *argv[]) {
+//     if (argc != 4) {
+//         printf("Usage: %s <input> <base_from> <base_to>\n", argv[0]);
+//         return 1;
+//     }
+
+//     char *input = argv[1];
+//     char *base_from = argv[2];
+//     char *base_to = argv[3];
+
+//     printf("CONVERSION\n\n");
+//     printf("Input: %s\nBase From: %s\nBase To: %s\nResult: %s\n", 
+//             input, base_from, base_to, 
+// 			ft_convert_base(input, base_from, base_to));
+
+//     return 0;
+// }
