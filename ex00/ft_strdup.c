@@ -24,7 +24,7 @@ char	*ft_strdup(char *src)
 	len = 0;
 	while (src[len])
 		len++;
-	duplicate = malloc((len + 1) * sizeof(char));
+	duplicate = (char *) malloc((len + 1) * sizeof(char));
 	if (duplicate == NULL)
 		return (NULL);
 	index = 0;

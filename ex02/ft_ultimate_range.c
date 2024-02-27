@@ -13,33 +13,44 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int ft_ultimate_range(int **range, int min, int max);
+int	ft_ultimate_range(int **range, int min, int max);
+int	*ft_range(int min, int max);
 
-int ft_ultimate_range(int **range, int min, int max)
+int	ft_ultimate_range(int **range, int min, int max)
 {
-	int	index;
-
-	if (max - min <= 0)
-	{
-		range = NULL;
-		return (0);
-	}
-	range[0] = malloc((max - min) * sizeof(int));
-	if (range[0] == NULL)
+	*range = ft_range(min, max);
+	if (*range == NULL || min >= max)
 		return (-1);
-	index = 0;
-	while (index < max - min)
-	{
-		range[0][index] = min + index;
-		index++;
-	}
-	return (sizeof(range));
+	else
+		return (max - min);
 }
 
-// int main(){
+int	*ft_range(int min, int max)
+{
+	int	*array;
+	int	index;
+
+	if (min >= max)
+		return (NULL);
+	array = (int *) malloc((max - min) * sizeof(int));
+	if (array == NULL)
+		return (NULL);
+	index = 0;
+	while (index < (max - min))
+	{
+		array[index] = min + index;
+		index++;
+	}
+	return (array);
+}
+
+// int main(int argc, char *argv[]){
+// 	(void) argc;
+// 	printf("go\t");
 //     int **tab = malloc(sizeof(int**));
-//     int max = 45;
+//     int max = atoi(argv[1]);
 //     int ret = ft_ultimate_range(tab, 10, max);
+// 	printf("Return value : %d\n", ret);
 //     for (int i = 0; i < max; i++)
 //         printf("t[%d] = %d\n", i, (*tab)[i]);
 //     printf("return = %d\n", ret);
