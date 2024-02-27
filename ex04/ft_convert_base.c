@@ -15,17 +15,21 @@
 #include <limits.h>
 
 int		strpos(char *str, char c);
-int		ft_atoi_base(char *nbr, char *base_from);
+long	ft_atoi_base(char *nbr, char *base_from);
 int		get_malloc_size(int n, int len_base);
-char	*ft_putnbr_base(int n, char *base_to);
+char	*ft_putnbr_base(long n, char *base_to);
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
+int 	chkbse_getsz(char *base);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
+	if (chkbse_getsz(base_from) <= 1 || 
+		chkbse_getsz(base_to) <= 1)
+		return (NULL);
 	return (ft_putnbr_base(ft_atoi_base(nbr, base_from), base_to));
 }
 
-char	*ft_putnbr_base(int n, char *base_to)
+char	*ft_putnbr_base(long n, char *base_to)
 {
 	int		i;
 	int		j;
@@ -36,7 +40,7 @@ char	*ft_putnbr_base(int n, char *base_to)
 	i = get_malloc_size(n, len_base_to);
 	nbr_converted = (char *) malloc(i * sizeof(char));
 	if (nbr_converted == NULL)
-		return ("Error malloc()");
+		return (NULL);
 	if (n < 0)
 	{
 		nbr_converted[0] = '-';
@@ -52,12 +56,12 @@ char	*ft_putnbr_base(int n, char *base_to)
 	return (nbr_converted);
 }
 
-int	ft_atoi_base(char *nbr, char *base_from)
+long	ft_atoi_base(char *nbr, char *base_from)
 {
-	int	i;
-	int	sign;
-	int	n;
-	int	len_base_from;
+	int		i;
+	int		sign;
+	long	n;
+	int		len_base_from;
 
 	i = 0;
 	sign = 1;

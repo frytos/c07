@@ -10,22 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int check_base_get_size(str *base)
+int chkbse_getsz(char *base)
 {
 	int	index;
+	int search_index;
 
 	index = 0;
 	while (base[index])
+	{
 		if (base[index] == '-' || base[index] == '+')
 			return (-1);
-		search_index = 
-		while
-	index = 0;
-	while ((9 <= base[index] && base[index] <= 13) || base[index] == 32)
-		index ++;
-	while (base[index] == '-' || base[index] == '+')
-
-	{
-		if (9 <= base[index] && base[index] <= 13)
+		if ((9 <= base[index] && base[index] <= 13) || base[index] == 32)
+			return (-2);
+		search_index = index + 1;
+		while (base[search_index])
+		{
+			if (base[index] == base[search_index])
+				return (-3);
+			search_index++;
+		}
+		index++;
 	}
+	return (index);
 }
