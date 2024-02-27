@@ -17,15 +17,15 @@
 int		strpos(char *str, char c);
 int		ft_atoi_base(char *nbr, char *base_from);
 int		get_malloc_size(int n, int len_base);
-char	*ft_itoa_base(int n, char *base_to);
+char	*ft_putnbr_base(int n, char *base_to);
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	return (ft_itoa_base(ft_atoi_base(nbr, base_from), base_to));
+	return (ft_putnbr_base(ft_atoi_base(nbr, base_from), base_to));
 }
 
-char	*ft_itoa_base(int n, char *base_to)
+char	*ft_putnbr_base(int n, char *base_to)
 {
 	int		i;
 	int		j;
