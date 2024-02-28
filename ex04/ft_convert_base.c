@@ -6,7 +6,7 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:15:47 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/28 18:05:16 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:22:05 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int		chkbse_getsz(char *base);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	if (chkbse_getsz(base_to) <= 1 || chkbse_getsz(base_from) <= 1)
-	{
+	if (nbr == NULL || (base_from == NULL || base_to == NULL))
 		return (NULL);
-	}
+	if (chkbse_getsz(base_to) <= 1 || chkbse_getsz(base_from) <= 1)
+		return (NULL);
 	if (!(chkbse_getsz(base_from) <= 1 || chkbse_getsz(base_to) <= 1))
 		return (ft_putnbr_base(ft_atoi_base(nbr, base_from), base_to));
 	return (NULL);
@@ -182,11 +182,11 @@ int	strpos(char *str, char c)
 
 // int main(void) {
 // 
-// 	char *inputs[] = {"       -+-+---+--2147483648",
+// 	char *inputs[] = {NULL, "       -+-+---+--2147483648",
 // 		"2147483647", "101010", "1 0",
 // 		"f7a25", "-arnaud", "<~!~>"};
 // 
-// 	char *bases[] = {"arnaud", "0+1", "0 1", "audrey", "0123456789",
+// 	char *bases[] = {NULL, "arnaud", "0+1", "0 1", "audrey", "0123456789",
 // 		"0123456789abcdef", "abcdefghijklmnopqrstuvwxyz",
 // 		"{}[]<>~!^*()_=", "wtyuioahxvm"};
 // 
@@ -200,12 +200,20 @@ int	strpos(char *str, char c)
 // 		{
 // 			while (k < 9)
 // 			{
-// 				long value = ft_atoi_base(inputs[i], bases[j]);
-// 				if (!(chkbse_getsz(bases[j]) <= 1
-//      				|| chkbse_getsz(bases[k]) <= 1) && value != 0)
-// 				{
+// 				long value = 1;
+// 				if (inputs[i] == NULL || (bases[j] == NULL || bases[k] == NULL))
+// 		//			break;
+// 				{	
+// 		//		if (!(chkbse_getsz(bases[j]) <= 1
+//      		//		|| chkbse_getsz(bases[k]) <= 1) && value != 0)
+// 		//		{
 // 					char	*nbr_converted;
-// 					nbr_converted = ft_putnbr_base(value, bases[k]);
+// 					nbr_converted = ft_convert_base(inputs[i], bases[j], bases[k]);
+// 					// if (nbr_converted == NULL)
+// 					// {
+// 					// 	free(nbr_converted);
+// 					// 	continue;
+// 					// }
 // 					//printf("\tbase_from[%d]\t"
 //      					//"input[%d]\tbase_to[%d]\n", i, j, k);
 // 					printf("---------------------------------------------"
@@ -217,6 +225,7 @@ int	strpos(char *str, char c)
 // 				}
 // 				else
 // 				{
+// 					 printf("KO bases[%d](%d) input[%d]",j,k,i);
 // 					// printf("KO |%ld| : bases[%d](%d) :"
 //      					//" %s, inputs[%d], bases[%d](%d) : %s\n",
 // 					// 	value, j,chkbse_getsz(bases[j]), bases[j], i, k,
