@@ -6,7 +6,7 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 01:46:20 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/27 02:00:05 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:06:06 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_split(char *str, char *charset)
 {
 	char	**strs;
 
-	if (str[0] == 0)
+	if (str == NULL || str[0] == 0)
 	{
 		strs = (char **) malloc(sizeof(char *));
 		if (!strs)
@@ -30,7 +30,7 @@ char	**ft_split(char *str, char *charset)
 		strs[0] = NULL;
 		return (strs);
 	}
-	if (*charset == 0)
+	if (charset == NULL || *charset == 0)
 	{
 		strs = (char **) malloc(2 * sizeof(char *));
 		if (!strs)
@@ -66,7 +66,7 @@ char	**fill_strs(char *str, char *charset, char **strs)
 			if (strs[i_word] == NULL)
 				return (NULL);
 			strs[i_word][len_word] = '\0';
-			while (len_word-- >= 0)
+			while (len_word-- > 0)
 				strs[i_word][len_word] = str[i + len_word];
 			i_word++;
 		}
@@ -110,45 +110,51 @@ int	count_words(char *str, char *charset)
 }
 
 // int main() {
-// 	char *str[] = {"L'eglise d'Eve,   bien jolie.",
+// 	char *str[] = {NULL, "L'eglise d'Eve,   bien jolie.",
 // 		".a.b.c......xsd.e.f.",
 // 		"      ",
-// 		// "https://www.google.com/search?q=pointer+of+pointers+&tbm=isch&ved="
-// 		// 	"2aBOUQ2-cCegQIABAA&oq=pointer+of+pointers+&gs_lp=EgNFGEMYiAYB&s"
-// 		// 	"client=img&ei=kmDdQqA4&bih=2395&biw=1440#imgrc=ljTaIKmOcM",
+// 		 "https://www.google.com/search?q=pointer+of+pointers+&tbm=isch&ved="
+// 		 	"2aBOUQ2-cCegQIABAA&oq=pointer+of+pointers+&gs_lp=EgNFGEMYiAYB&s"
+// 			"client=img&ei=kmDdQqA4&bih=2395&biw=1440#imgrc=ljTaIKmOcM",
 // 		""};
-//     char *charset[]={" ',.", " ", "&+#/.?=-_", "",
+//     char *charset[]={NULL, " ',.", " ", "&+#/.?=-_", "",
 // 			"abcdefghijklmnopqrstuvwxyz"};
-// 	int nb_str = 4;
-// 	int nb_charset = 5;
+// 	int nb_str = 6;
+// 	int nb_charset = 6;
 // 	int i = 0;
 // 	int j = 0;
 // 	int k = 0;
 // 	char **strs;
 // 	while (i < nb_charset * nb_str)
 // 	{
-// 		if (i % nb_str == 0)
-// 			printf("###############################################"
-// 				"{%s}###############################################\n",
+// 		if (charset[i / nb_str] != NULL && str[i % nb_str] != NULL)
+// 		{
+// 			if (i % nb_str == 0)
+// 				printf("###############################################"
+// 					"{%s}###############################################\n",
+// 					charset[i / nb_str]);
+// 			printf("\t\t\t{%s}\t--//-->\t[%s]\t with ", str[i % nb_str],
 // 				charset[i / nb_str]);
-// 		printf("\t\t\t{%s}\t--//-->\t[%s]\t with ", str[i % nb_str],
-// 			charset[i / nb_str]);
-// 		printf("%d words counted\n", count_words(str[i % nb_str],
-// 			charset[i / nb_str]));
+// 			printf("%d words counted\n", count_words(str[i % nb_str],
+// 				charset[i / nb_str]));
+// 		}
 // 		strs = ft_split(str[i % nb_str], charset[i / nb_str]);
 // 		printf("-banana- %p -split-\n", strs);
 // 		if (strs == NULL)
 // 			printf("Bazingaaaa : (%p) NULL pointer returned\n", strs);
-// 		while (strs != NULL && strs[j])
+// 		while (strs != NULL && strs[j] != NULL)
 // 		{
 // 			while (k++ < j)
 // 				printf("---");
-// 			printf("-> strs[%d] : \"%s\"\n", j, strs[j]);
-// 			j++;
+// 			printf("%p-> strs[%d] : \"%s\"\n",&strs[j], j, strs[j]);
 // 			k = 0;
+// 			free(strs[j]);
+// 			j++;
 // 		}
+// 		free(strs[j]);
 // 		j = 0;
 // 		printf("(i=%d)\n\n",i);
+// 		free(strs);
 // 		i++;
 // 	}
 //     return 0;

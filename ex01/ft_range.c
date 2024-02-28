@@ -6,7 +6,7 @@
 /*   By: argrouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:37:08 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/22 15:58:27 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:54:43 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,14 @@ int	*ft_range(int min, int max)
 	return (array);
 }
 
-// int main()
+// int main(int argc, char **argv)
 // {
-//     int    *t = ft_range(-4584, -4574);
+// 	argc--;
+// 	argv++;
+// 	int	max = atoi(argv[0]);
+//     int    *t = ft_range(10, max);
 // 	printf("Pointer returned : %p\n", t);
-//     for (int i = 0; i < 10; i++)
+//     for (int i = 0; i < max - 10; i++)
 //         printf("t[%d] = %d\n", i, t[i]);
+//     free(t);
 // }

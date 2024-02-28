@@ -6,7 +6,7 @@
 /*   By: argrouss <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:40:10 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/22 15:34:01 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:54:08 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ char	*ft_strdup(char *src)
 //     char str[30] = "bonjour comment ca va ?";
 //     char *dup = ft_strdup(str);
 //     printf("%s\n",dup);
+//     free(dup);
 // }

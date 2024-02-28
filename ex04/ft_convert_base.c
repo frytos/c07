@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_to_base.c                                  :+:      :+:    :+:   */
+/*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:15:47 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/24 22:15:52 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:05:16 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,32 +129,36 @@ int	strpos(char *str, char c)
 //     char *input1 = "       -+-+---+--2147483647";
 //     char *base_from1 = "0123456789";
 //     char *base_to1 = "0123456789";
-
+// 
 //     char *input2 = "101010";
 //     char *base_from2 = "01";
 //     char *base_to2 = "0123456789";
-
+// 
 //     char *input3 = "F7A25";
 //     char *base_from3 = "0123456789ABCDEF";
 //     char *base_to3 = "0123456789";
-
+// 
+//     char *res;
 //     printf("CONVERSION\n\n");
-
+// 
+//     res = ft_convert_base(input1, base_from1, base_to1);
 //     printf("Test 1:\n");
 //     printf("Input: %s\nBase From: %s\nBase To: %s\nResult: %s\n\n", 
-//             input1, base_from1, base_to1, 
-// 			ft_convert_base(input1, base_from1, base_to1));
-
+//             input1, base_from1, base_to1, res);
+//     free(res);
+// 
+//     res = ft_convert_base(input2, base_from2, base_to2);
 //     printf("Test 2:\n");
 //     printf("Input: %s\nBase From: %s\nBase To: %s\nResult: %s\n\n", 
-//             input2, base_from2, base_to2, 
-// 			ft_convert_base(input2, base_from2, base_to2));
-
+//             input2, base_from2, base_to2, res); 
+//     free(res);
+// 
+//     res = ft_convert_base(input3, base_from3, base_to3);
 //     printf("Test 3:\n");
 //     printf("Input: %s\nBase From: %s\nBase To: %s\nResult: %s\n\n", 
-//             input3, base_from3, base_to3, 
-// 			ft_convert_base(input3, base_from3, base_to3));
-
+//             input3, base_from3, base_to3, res); 
+//     free(res);
+// 
 //     return 0;
 // }
 
@@ -177,18 +181,19 @@ int	strpos(char *str, char c)
 // }
 
 // int main(void) {
-
-// 	char *inputs[] = {"       -+-+---+--2147483647", "101010", "1 0",
+// 
+// 	char *inputs[] = {"       -+-+---+--2147483648",
+// 		"2147483647", "101010", "1 0",
 // 		"f7a25", "-arnaud", "<~!~>"};
-
+// 
 // 	char *bases[] = {"arnaud", "0+1", "0 1", "audrey", "0123456789",
 // 		"0123456789abcdef", "abcdefghijklmnopqrstuvwxyz",
 // 		"{}[]<>~!^*()_=", "wtyuioahxvm"};
-
+// 
 // 	int i, j, k;
 // 	i = 0; j = 0; k = 0;
 //     printf("CONVERSION\n\n");
-
+// 
 // 	while (i < 6)
 // 	{
 // 		while (j < 9)
@@ -197,23 +202,25 @@ int	strpos(char *str, char c)
 // 			{
 // 				long value = ft_atoi_base(inputs[i], bases[j]);
 // 				if (!(chkbse_getsz(bases[j]) <= 1
-//					|| chkbse_getsz(bases[k]) <= 1) && value != 0)
+//      				|| chkbse_getsz(bases[k]) <= 1) && value != 0)
 // 				{
 // 					char	*nbr_converted;
 // 					nbr_converted = ft_putnbr_base(value, bases[k]);
 // 					//printf("\tbase_from[%d]\t"
-//						//"input[%d]\tbase_to[%d]\n", i, j, k);
+//      					//"input[%d]\tbase_to[%d]\n", i, j, k);
 // 					printf("---------------------------------------------"
-//						"----------------------------------\n{%s}\n\t\t\t>"
-//						"%s \n\t\t\t\t\t\t<%ld>\n{%s}\n\t\t\t> %s\n\n",
-//						bases[j], inputs[i], value, bases[k], nbr_converted);
+//      					"----------------------------------\n{%s}\n\t\t\t>"
+//      					"%s \n\t\t\t\t\t\t<%ld>\n{%s}\n\t\t\t> %s\n\n",
+//      					bases[j], inputs[i], value, bases[k],
+//      					nbr_converted);
+// 					free(nbr_converted);
 // 				}
 // 				else
 // 				{
 // 					// printf("KO |%ld| : bases[%d](%d) :"
-//						//" %s, inputs[%d], bases[%d](%d) : %s\n",
+//      					//" %s, inputs[%d], bases[%d](%d) : %s\n",
 // 					// 	value, j,chkbse_getsz(bases[j]), bases[j], i, k,
-//						//chkbse_getsz(bases[k]), bases[k]);
+//      					//chkbse_getsz(bases[k]), bases[k]);
 // 				}
 // 				k++;
 // 			}

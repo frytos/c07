@@ -6,7 +6,7 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:42:09 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/23 03:51:13 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:02:19 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	ft_strcat(char *dest, char *src, int len_dest)
 		dest[len_dest + index] = src[index];
 		index++;
 	}
+	dest[len_dest + index] = '\0';
 	return (index);
 }
 
@@ -103,11 +104,16 @@ int	ft_strlen(char *str)
 }
 
 // int main(){
-// //    char    *tab[] = {"salut","comment","ca","va","?"};
+// //    char    *tab[] = {""};
+// //    char    *tab[] = {};
 //     char    *tab[] = {"salut ",""," ca \n","va","?"};
-//     char *r = ft_strjoin(5, tab, "-");
+// //    char *r = ft_strjoin(5, tab, "-");
+//     char *r = ft_strjoin(5, tab, "");
+// //    char *r = ft_strjoin(1, tab, "");
+// //    char *r = ft_strjoin(0, tab, "");
 // //    char *r = ft_strjoin(5, tab, "");
 // //    char *r = ft_strjoin(0, tab, " ");
-//     printf("%s\n",r);
+//     printf("Pointer returne : %s\n",r);
 //     printf("%p\n",r);
+//     free(r);
 // }
