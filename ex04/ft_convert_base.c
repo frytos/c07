@@ -6,13 +6,11 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:15:47 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/28 19:22:05 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:32:10 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <limits.h>
 
 int		strpos(char *str, char c);
 long	ft_atoi_base(char *nbr, char *base_from);
@@ -208,7 +206,8 @@ int	strpos(char *str, char c)
 //      		//		|| chkbse_getsz(bases[k]) <= 1) && value != 0)
 // 		//		{
 // 					char	*nbr_converted;
-// 					nbr_converted = ft_convert_base(inputs[i], bases[j], bases[k]);
+// 					nbr_converted = ft_convert_base(inputs[i],
+// 						bases[j], bases[k]);
 // 					// if (nbr_converted == NULL)
 // 					// {
 // 					// 	free(nbr_converted);
