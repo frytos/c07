@@ -10,142 +10,117 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
-int    is_sep(char *str, char *charset);
-int		*count_words_and_char(char *str, char *charset);
+int		is_sep(char str, char *charset);
+int		count_words(char *str, char *charset);
 char	**fill_strs(char *str, char *charset, char **strs);
 char	**ft_split(char *str, char *charset);
 
 char	**ft_split(char *str, char *charset)
 {
 	char	**strs;
-	int		strs_size;
-
 
 	if (str[0] == 0)
 	{
-		strs = (char **) malloc(sizeof(char*));
+		strs = (char **) malloc(sizeof(char *));
 		if (!strs)
 			return (NULL);
-		strs[0] = 0;
+		strs[0] = NULL;
 		return (strs);
 	}
 	if (*charset == 0)
 	{
-		strs = (char **) malloc(2 * sizeof(char*));
+		strs = (char **) malloc(2 * sizeof(char *));
 		if (!strs)
 			return (NULL);
+		strs[1] = NULL;
 		strs[0] = str;
 		return (strs);
 	}
-	strs_size = count_words_and_char(str, charset)[0] + 1;
-	strs = (char **) malloc(strs_size * sizeof(char *));
+	strs = (char **) malloc((count_words(str, charset) + 1) * sizeof(char *));
 	if (!strs)
 		return (NULL);
-	strs[strs_size - 1] = 0;
+	strs[count_words(str, charset)] = NULL;
 	return (fill_strs(str, charset, strs));
 }
 
 char	**fill_strs(char *str, char *charset, char **strs)
 {
-	int	index;
-	int index_word;
-	int len_word;
+	int	i;
+	int	i_word;
+	int	len_word;
 
-	index = 0;
-	index_word = 0;
-	while (str[index])
+	i = 0;
+	i_word = 0;
+	while (str[i])
 	{
-		if ((str[index + 1] && is_sep(&str[index], charset) 
-			&& !is_sep(&str[index + 1], charset)) 
-			|| (index == 0 && !is_sep(&str[index], charset)))
+		if ((is_sep(str[i - 1], charset) && !is_sep(str[i], charset))
+			|| (i == 0 && !is_sep(str[i], charset)))
 		{
-			//printf("  {->%s<-}[%d]", &str[index], index);
-			if (index != 0 || is_sep(&str[index], charset))
-				index++;
-			//printf("if[%d]{->%s<-}\n", index, &str[index]);
 			len_word = 0;
-			while (!is_sep(&str[index + len_word], charset))
+			while (!is_sep(str[i + len_word], charset) && str[i + len_word])
 				len_word++;
-			strs[index_word] = (char *) malloc((len_word + 1) * sizeof(char));
-			if (strs[index_word] == NULL)
+			strs[i_word] = (char *)malloc((len_word + 1) * sizeof(char));
+			if (strs[i_word] == NULL)
 				return (NULL);
-			strs[index_word][len_word] = '\0';
-			while (len_word-- > 0)
-				strs[index_word][len_word] = str[index + len_word];
-			index_word++;
+			strs[i_word][len_word] = '\0';
+			while (len_word-- >= 0)
+				strs[i_word][len_word] = str[i + len_word];
+			i_word++;
 		}
-		index++;
+		i++;
 	}
 	return (strs);
 }
 
-int    is_sep(char *str, char *charset)
+int	is_sep(char str, char *charset)
 {
-    int    index;
+	int	index;
 
-    index = 0;
-    while (charset[index])
-    {
-        if (str[0] == charset[index])
-            return (1);
-        index++;
-    }
-    return (0);
+	index = 0;
+	while (charset[index])
+	{
+		if (str == charset[index])
+			return (1);
+		index++;
+	}
+	return (0);
 }
 
-int		*count_words_and_char(char *str, char *charset)
+int	count_words(char *str, char *charset)
 {
-    int index;
-    int in_word;
-    int word_count;
-	int char_count;
-	int	count[2];
+	int	index;
+	int	word_count;
 
-    index = 0;
-	char_count = 0;
-	
-    if (is_sep(&str[0], charset) || !*str)
+	if (str[0] == 0)
+		return (0);
+	index = 1;
+	word_count = 0;
+	if (!(is_sep(str[0], charset)))
+		word_count++;
+	while (str[index])
 	{
-		in_word = 0;
-		word_count = 0;
+		if (is_sep(str[index - 1], charset) && !(is_sep(str[index], charset)))
+			word_count++;
+		index++;
 	}
-	else
-	{
-		in_word = 1;
-		word_count = 1;
-	}
-    while (str[index])
-    {
-        if(!(is_sep(&str[index], charset)))
-		{
-			char_count++;
-			if (!in_word)
-			{
-				in_word = 1;
-            	word_count++;
-			}
-		}
-		else
-			in_word = 0;
-        index++;
-    }
-	count[0] = word_count;
-	count[1] = char_count;
-	return (count);
+	return (word_count);
 }
 
 // int main() {
-// 	char *str[] = {"L'eglise d'Eve, bien jolie.",
+// 	char *str[] = {"L'eglise d'Eve,   bien jolie.",
 // 		".a.b.c......xsd.e.f.",
-// 		//"https://www.google.com/search?q=pointer+of+pointers+&tbm=isch&ved=2aBOUQ2-cCegQIABAA&oq=pointer+of+pointers+&gs_lp=EgNFGEMYiAYB&sclient=img&ei=kmDdQqA4&bih=2395&biw=1440#imgrc=ljTaIKmOcM",
+// 		"      ",
+// 		// "https://www.google.com/search?q=pointer+of+pointers+&tbm=isch&ved="
+// 		// 	"2aBOUQ2-cCegQIABAA&oq=pointer+of+pointers+&gs_lp=EgNFGEMYiAYB&s"
+// 		// 	"client=img&ei=kmDdQqA4&bih=2395&biw=1440#imgrc=ljTaIKmOcM",
 // 		""};
-//     char *charset[]={" ',.", " ", "&+#/.?=-_", ""};
-// 	int nb_str = 3;
-// 	int nb_charset = 4;
+//     char *charset[]={" ',.", " ", "&+#/.?=-_", "",
+// 			"abcdefghijklmnopqrstuvwxyz"};
+// 	int nb_str = 4;
+// 	int nb_charset = 5;
 // 	int i = 0;
 // 	int j = 0;
 // 	int k = 0;
@@ -153,10 +128,13 @@ int		*count_words_and_char(char *str, char *charset)
 // 	while (i < nb_charset * nb_str)
 // 	{
 // 		if (i % nb_str == 0)
-// 			printf("###############################################{%s}###############################################\n", charset[i / nb_str]);
-// 		printf("\t\t\t{%s}\t--//-->\t[%s]\t with ", str[i % nb_str], charset[i / nb_str]);
-// 		printf("%d words counted", count_words_and_char(str[i % nb_str], charset[i / nb_str])[0]);
-// 		printf(" and %d non-sep chars counted\n", count_words_and_char(str[i % nb_str], charset[i / nb_str])[1]);
+// 			printf("###############################################"
+// 				"{%s}###############################################\n",
+// 				charset[i / nb_str]);
+// 		printf("\t\t\t{%s}\t--//-->\t[%s]\t with ", str[i % nb_str],
+// 			charset[i / nb_str]);
+// 		printf("%d words counted\n", count_words(str[i % nb_str],
+// 			charset[i / nb_str]));
 // 		strs = ft_split(str[i % nb_str], charset[i / nb_str]);
 // 		printf("-banana- %p -split-\n", strs);
 // 		if (strs == NULL)
@@ -176,43 +154,66 @@ int		*count_words_and_char(char *str, char *charset)
 //     return 0;
 // }
 
-int main() {
-	char *str[] = {"L'eglise d'Eve, bien jolie.",
-		".a.b.c......xsd.e.f.",
-		//"https://www.google.com/search?q=pointer+of+pointers+&tbm=isch&ved=2aBOUQ2-cCegQIABAA&oq=pointer+of+pointers+&gs_lp=EgNFGEMYiAYB&sclient=img&ei=kmDdQqA4&bih=2395&biw=1440#imgrc=ljTaIKmOcM",
-		""};
-    char *charset[]={" ',.", " ", "&+#/.?=-_", ""};
-	int nb_str = 3;
-	int nb_charset = 4;
-	int i = 0;
-	int j = 0;
-	char **strs;
-	while (i < nb_charset * nb_str)
-	{
-		if (i % nb_str == 0)
-			printf("###############################################{%s}###############################################\n", charset[i / nb_str]);
-		printf("\t\t\t{%s}\t--//-->\t[%s]\t with ", str[i % nb_str], charset[i / nb_str]);
-		printf("%d words counted", count_words_and_char(str[i % nb_str], charset[i / nb_str])[0]);
-		printf(" and %d non-sep chars counted\n", count_words_and_char(str[i % nb_str], charset[i / nb_str])[1]);
-		strs = ft_split(str[i % nb_str], charset[i / nb_str]);
-		printf("-banana- %p -split-\n", strs);
-		if (strs == NULL)
-			printf("Bazingaaaa : (%p) NULL pointer returned\n", strs);
-		while (strs != NULL && strs[j])
-		{
-			printf("        %s\t",strs[j]);
-			j++;
-		}
-		j = 0;
-		printf("\n");
-		while (strs != NULL && strs[j])
-		{
-			printf("strs[%d] |-->\t", j);
-			j++;
-		}
-		j = 0;
-		printf("(i=%d)\n\n",i);
-		i++;
-	}
-    return 0;
-}
+// int main() {
+// 	char *str[] = {"L'eglise d'Eve, bien jolie.",
+// 		".a.b.c......xsd.e.f.",
+// 		"https://www.google.com/search?q=pointer+of+pointers+&tbm=isch&ved="
+// 			"2aBOUQ2-cCegQIABAA&oq=pointer+of+pointers+&gs_lp=EgNFGEMYiAYB&s"
+// 			"client=img&ei=kmDdQqA4&bih=2395&biw=1440#imgrc=ljTaIKmOcM",
+// 		""};
+//     char *charset[]={" ',.", " ", "&+#/.?=-_", ""};
+// 	int nb_str = 3;
+// 	int nb_charset = 4;
+// 	int i = 0;
+// 	int j = 0;
+// 	char **strs;
+// 	while (i < nb_charset * nb_str)
+// 	{
+// 		if (i % nb_str == 0)
+// 			printf("###############################################"
+// 				"{%s}###############################################\n",
+// 				charset[i / nb_str]);
+// 		printf("\t\t\t{%s}\t--//-->\t[%s]\t with ", str[i % nb_str],
+// 			charset[i / nb_str]);
+// 		printf("%d words counted\n", count_words(str[i % nb_str],
+// 			charset[i / nb_str]));
+// 		strs = ft_split(str[i % nb_str], charset[i / nb_str]);
+// 		printf("-banana- %p -split-\n", strs);
+// 		if (strs == NULL)
+// 			printf("Bazingaaaa : (%p) NULL pointer returned\n", strs);
+// 		while (strs != NULL && strs[j])
+// 		{
+// 			printf("        %s\t",strs[j]);
+// 			j++;
+// 		}
+// 		j = 0;
+// 		printf("\n");
+// 		while (strs != NULL && strs[j])
+// 		{
+// 			printf("strs[%d] |-->\t", j);
+// 			j++;
+// 		}
+// 		j = 0;
+// 		printf("(i=%d)\n\n",i);
+// 		i++;
+// 	}
+//     return 0;
+// }
+
+		// if ((str[index + 1] && is_sep(str[index], charset)
+		// 		&& !is_sep(str[index + 1], charset))
+		// 	|| (index == 0 && !is_sep(str[index], charset)))
+		// {
+		// 	if (index != 0 || is_sep(str[index], charset))
+		// 		index++;
+		// 	len_word = 0;
+		// 	while (!is_sep(str[index + len_word], charset))
+		// 		len_word++;
+		// 	strs[index_word] = (char *) malloc((len_word + 1) * sizeof(char));
+		// 	if (strs[index_word] == NULL)
+		// 		return (NULL);
+		// 	strs[index_word][len_word] = '\0';
+		// 	while (len_word-- > 0)
+		// 		strs[index_word][len_word] = str[index + len_word];
+		// 	index_word++;
+		// }
