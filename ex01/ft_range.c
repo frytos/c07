@@ -32,7 +32,7 @@ int	*ft_range(int min, int max)
 		index++;
 	}
 	return (array);
-}	
+}
 
 // int main()
 // {

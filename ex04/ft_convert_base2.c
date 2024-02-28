@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int chkbse_getsz(char *base)
+int	chkbse_getsz(char *base)
 {
 	int	index;
-	int search_index;
+	int	search_index;
 
 	index = 0;
 	while (base[index])

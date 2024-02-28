@@ -20,8 +20,6 @@ int		get_malloc_len(int size, char **strs, char *sep);
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	int		index_strs;
-	int		index_join;
 	char	*str_cat;
 	char	*empty;
 
@@ -36,6 +34,14 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	str_cat = (char *) malloc(get_malloc_len(size, strs, sep) * sizeof(char));
 	if (str_cat == NULL)
 		return (NULL);
+	return (n_cat(size, strs, sep, str_cat));
+}
+
+char	*n_cat(int size, char **strs, char *sep, char *str_cat)
+{
+	int		index_strs;
+	int		index_join;
+
 	index_strs = 0;
 	index_join = 0;
 	while (index_strs < size)
