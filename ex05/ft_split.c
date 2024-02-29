@@ -200,21 +200,3 @@ int	count_words(char *str, char *charset)
 // 	}
 //     return 0;
 // }
-
-		// if ((str[index + 1] && is_sep(str[index], charset)
-		// 		&& !is_sep(str[index + 1], charset))
-		// 	|| (index == 0 && !is_sep(str[index], charset)))
-		// {
-		// 	if (index != 0 || is_sep(str[index], charset))
-		// 		index++;
-		// 	len_word = 0;
-		// 	while (!is_sep(str[index + len_word], charset))
-		// 		len_word++;
-		// 	strs[index_word] = (char *) malloc((len_word + 1) * sizeof(char));
-		// 	if (strs[index_word] == NULL)
-		// 		return (NULL);
-		// 	strs[index_word][len_word] = '\0';
-		// 	while (len_word-- > 0)
-		// 		strs[index_word][len_word] = str[index + len_word];
-		// 	index_word++;
-		// }
