@@ -47,9 +47,8 @@ char	*n_cat(int size, char **strs, char *sep, char *str_cat)
 	index_join = 0;
 	while (index_strs < size)
 	{
-		if (strs[index_strs][0])
-			index_join += ft_strcat(str_cat, strs[index_strs], index_join);
-		if (index_strs < size - 1 && strs[index_strs][0])
+		index_join += ft_strcat(str_cat, strs[index_strs], index_join);
+		if (index_strs < size - 1)
 			index_join += ft_strcat(str_cat, sep, index_join);
 		index_strs++;
 	}
@@ -60,21 +59,16 @@ char	*n_cat(int size, char **strs, char *sep, char *str_cat)
 int	get_malloc_len(int size, char **strs, char *sep)
 {
 	int	len;
-	int	empty_string;
 	int	index;
 
 	len = 0;
-	empty_string = 0;
 	index = 0;
 	while (index < size)
 	{
-		if (!strs[index][0])
-			empty_string++;
-		else
-			len += ft_strlen(strs[index]);
+		len += ft_strlen(strs[index]);
 		index++;
 	}
-	len += (size - empty_string - 1) * ft_strlen(sep);
+	len += (size - 1) * ft_strlen(sep);
 	len += 1;
 	return (len);
 }
