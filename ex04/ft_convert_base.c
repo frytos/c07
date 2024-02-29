@@ -6,7 +6,7 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:15:47 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/28 19:32:10 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:48:01 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ int		chkbse_getsz(char *base);
 
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	if (nbr == NULL || (base_from == NULL || base_to == NULL))
-		return (NULL);
+	if (nbr == NULL)
+		nbr = ""; 
 	if (chkbse_getsz(base_to) <= 1 || chkbse_getsz(base_from) <= 1)
 		return (NULL);
-	if (!(chkbse_getsz(base_from) <= 1 || chkbse_getsz(base_to) <= 1))
-		return (ft_putnbr_base(ft_atoi_base(nbr, base_from), base_to));
-	return (NULL);
+	return (ft_putnbr_base(ft_atoi_base(nbr, base_from), base_to));
 }
 
 long	ft_atoi_base(char *nbr, char *base_from)

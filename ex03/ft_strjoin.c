@@ -6,7 +6,7 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 00:42:09 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/28 18:02:19 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/29 09:39:55 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	char	*str_cat;
 	char	*empty;
 
+	if (strs == NULL)
+		return (NULL);
 	if (size <= 0)
 	{
 		empty = (char *) malloc(sizeof(char));

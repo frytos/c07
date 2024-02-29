@@ -6,7 +6,7 @@
 /*   By: argrouss <argrouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 01:46:20 by argrouss          #+#    #+#             */
-/*   Updated: 2024/02/28 18:06:06 by argrouss         ###   ########.fr       */
+/*   Updated: 2024/02/29 08:20:49 by argrouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,16 @@ char	**ft_split(char *str, char *charset)
 {
 	char	**strs;
 
-	if (str == NULL || str[0] == 0)
+	if (str == NULL)
+		str = "";
+	if (charset == NULL)
+		charset = "";
+	if (str[0] == 0)
 	{
 		strs = (char **) malloc(sizeof(char *));
 		if (!strs)
 			return (NULL);
 		strs[0] = NULL;
-		return (strs);
-	}
-	if (charset == NULL || *charset == 0)
-	{
-		strs = (char **) malloc(2 * sizeof(char *));
-		if (!strs)
-			return (NULL);
-		strs[1] = NULL;
-		strs[0] = str;
 		return (strs);
 	}
 	strs = (char **) malloc((count_words(str, charset) + 1) * sizeof(char *));
