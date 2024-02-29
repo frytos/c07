@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 
 char	*ft_strdup(char *src);
 
@@ -37,6 +36,7 @@ char	*ft_strdup(char *src)
 	return (duplicate);
 }
 
+// #include <stdio.h>
 // int    main()
 // {
 //     char str[30] = "bonjour comment ca va ?";
