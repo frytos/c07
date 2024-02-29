@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "./ft_convert_base2.c"
 
 int		strpos(char *str, char c);
 long	ft_atoi_base(char *nbr, char *base_from);
