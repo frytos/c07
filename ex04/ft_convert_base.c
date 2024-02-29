@@ -22,7 +22,7 @@ int		chkbse_getsz(char *base);
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
 	if (nbr == NULL)
-		nbr = ""; 
+		nbr = "";
 	if (chkbse_getsz(base_to) <= 1 || chkbse_getsz(base_from) <= 1)
 		return (NULL);
 	return (ft_putnbr_base(ft_atoi_base(nbr, base_from), base_to));

@@ -23,7 +23,7 @@ int	chkbse_getsz(char *base)
 	while (base[index])
 	{
 		if ((9 <= base[index] && base[index] <= 13) || base[index] == 32)
-			return (-2);	
+			return (-2);
 		if (base[index] == '-' || base[index] == '+')
 			return (-1);
 		search_index = index + 1;
